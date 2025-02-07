@@ -3,36 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Animation</title>
+    <title>Loading Animation with Popup</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        .loading-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .spinner {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            border: 5px solid #ccc;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-         .popup {
+        .popup {
             display: none;
             position: fixed;
             top: 50%;
@@ -43,20 +30,22 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
-                .loading-text {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-            font-family: Arial, sans-serif;
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="spinner"></div>
-        <div class="loading-text">Loading...</div>
+    <div class="loader" id="loader"></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Welcome! This is your popup message.</p>
+        <button onclick="closePopup()">Close</button>
     </div>
-      <script>
+    <script>
         setTimeout(() => {
             document.getElementById("loader").style.display = "none";
             document.getElementById("overlay").style.display = "block";
