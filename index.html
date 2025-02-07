@@ -32,8 +32,18 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .loading-text {
+         .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+                .loading-text {
             margin-top: 10px;
             font-size: 18px;
             color: #333;
@@ -46,5 +56,16 @@
         <div class="spinner"></div>
         <div class="loading-text">Loading...</div>
     </div>
+      <script>
+        setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "block";
+        }, 5000);
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
 </body>
 </html>
